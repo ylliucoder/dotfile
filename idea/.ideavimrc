@@ -1,0 +1,288 @@
+"-----------------------------------------------------------------------------------------------------------------------
+
+" ====================================
+" ========== Basic settings ==========
+" ====================================
+
+" .ideavimrc file
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>:nohlsearch<CR>
+nnoremap \e :e C:\\Users\\liu22\\.ideavimrc<CR>:nohlsearch<CR>
+
+" leader key
+nmap <space> <nop>
+let mapleader=" "
+let g:mapleader=" "
+
+" line padding top and bottom
+set scrolloff=10
+
+" relative line number
+set number
+set relativenumber
+
+" search highlight
+set hlsearch
+set incsearch
+
+" search ignore case
+set smartcase
+set ignorecase
+
+" close error bell
+set visualbell
+set noerrorbells
+
+" show vim mode and command
+set showmode
+set showcmd
+
+" use system clipboard
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+" remember histories
+set history=200
+
+" refactor code keep mode
+set idearefactormode=keep
+
+"-----------------------------------------------------------------------------------------------------------------------
+
+" ==================================
+" ========== Key Mappings ==========
+" ==================================
+
+" back normal mode
+inoremap jk <esc>
+vnoremap z <esc>
+onoremap z <esc>
+
+" forbid s and r
+nnoremap s <nop>
+nnoremap S <nop>
+nnoremap r <nop>
+nnoremap R <nop>
+noremap <c-w> <nop>
+
+" move key mappings
+nnoremap H ^
+nnoremap J +
+nnoremap K -
+nnoremap L $
+
+nnoremap <c-h> 15h
+nnoremap <c-j> 5j
+nnoremap <c-k> 5k
+nnoremap <c-l> 15l
+nnoremap <c-n> <home>
+nnoremap <c-m> <end>
+
+vnoremap <c-h> 15h
+vnoremap <c-j> 5j
+vnoremap <c-k> 5k
+vnoremap <c-l> 15l
+vnoremap <c-n> <home>
+vnoremap <c-m> <end>
+
+inoremap <c-h> <left>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-l> <right>
+inoremap <c-n> <home>
+inoremap <c-m> <end>
+
+cnoremap <c-h> <left>
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
+cnoremap <c-l> <right>
+cnoremap <c-n> <home>
+cnoremap <c-m> <end>
+
+" restore ^C and ^V
+vnoremap <C-C> "+y
+vnoremap <C-V> "+P
+inoremap <C-V> <C-R>+
+cnoremap <C-V> <C-R>+
+
+" u => undo, U => redo
+nnoremap U <c-r>
+
+" paste at next line
+nnoremap P o<C-r>+<ESC>u
+
+" copy from current position to the end
+nnoremap Y y$
+
+" collapse or expand code
+nnoremap zzc zM
+nnoremap zzo zR
+
+" easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" clear highlight
+nnoremap <cr> :nohlsearch<cr>
+
+"-----------------------------------------------------------------------------------------------------------------------
+
+" ==================================
+" ========== Idea Actions ==========
+" ==================================
+
+" show settings
+nnoremap <c-,> :action ShowSettings<CR>
+
+" hide all windows
+nmap <leader>hh <action>(HideAllWindows)
+
+" comment code
+nmap <C-/> <action>(CommentByLineComment)
+vmap <C-/> <action>(CommentByLineComment)
+
+" toggle tab ( buffer )
+nmap <tab> <action>(NextTab)
+nmap <s-tab> <action>(PreviousTab)
+nmap <c-tab> <action>(CloseEditor)
+nmap <c-s-tab> <action>(CloseAllEditorsButActive)
+
+" idea run
+nmap <leader>dr <action>(Run)
+nmap <leader>dd <action>(Debug)
+
+" idea terminal
+nmap <leader>to <action>(Terminal.OpenInTerminal)
+nmap <leader>ta <action>(ActivateTerminalToolWindow)
+
+" split window
+nnoremap <leader>sr :vsp<cr>
+nnoremap <leader>sc :sp<cr>
+nnoremap <leader>sh <c-w>h
+nnoremap <leader>sj <c-w>j
+nnoremap <leader>sk <c-w>k
+nnoremap <leader>sl <c-w>l
+
+" idea find
+nmap <leader>fe <action>(SearchEverywhere)
+nmap <leader>ff <action>(GotoFile)
+nmap <leader>fp <action>(FindInPath)
+nmap <leader>fa <action>(GotoAction)
+nmap <leader>fc <action>(GotoClass)
+
+" idea go to code
+nmap gd <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gt <Action>(GotoTest)
+nmap gb <Action>(Back)
+nmap gf <Action>(Forward)
+nmap gc <Action>(Generate)
+
+" Refactor code
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+map <leader>rn <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rc <Action>(IntroduceConstant)
+map <leader>rf <Action>(IntroduceField)
+map <leader>rp <Action>(IntroduceParameter)
+
+" Git windows
+map <leader>gc <Action>(CheckinProject)
+map <leader>ga <Action>(ActivateVersionControlToolWindow)
+
+"-----------------------------------------------------------------------------------------------------------------------
+
+" ====================================
+" ========== Ideavim Plugin ==========
+" ====================================
+
+" install ideavim plugin
+set NERDTree
+set easymotion
+set highlightedyank
+set surround
+set ReplaceWithRegister
+set argtextobj
+set exchange
+set vim-paragraph-motion
+set textobj-indent
+set matchit
+set ideajoin
+
+" nerdtree plugin
+let g:NERDTreeMapJumpParent='h'
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpRoot='H'
+let g:NERDTreeMapOpenRecursively='L'
+let g:NERDTreeMapJumpLastChild='<c-j>'
+let g:NERDTreeMapJumpFirstChild='<c-k>'
+let g:NERDTreeMapJumpNextSibling='J'
+let g:NERDTreeMapJumpPrevSibling='K'
+let g:NERDTreeMapOpenSplit='sc'
+let g:NERDTreeMapOpenVSplit='sr'
+let g:NERDTreeMapPreview='gl'
+let g:NERDTreeMapPreviewSplit='gsc'
+let g:NERDTreeMapPreviewVSplit='gsr'
+nnoremap <leader>na :NERDTreeFocus<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nr :NERDTreeRefreshRoot<CR>
+
+" easymotion plugin
+map s <Plug>(easymotion-s)
+
+" ideajoin plugin
+nnoremap <leader>jj J
+
+"-----------------------------------------------------------------------------------------------------------------------
+
+" ================================================
+" ========== Shortcut Conflicts Handler ==========
+" ================================================
+
+" vim handler
+sethandler <c-[> a:vim
+sethandler <c-c> a:vim
+sethandler <c-v> a:vim
+sethandler <c-w> a:vim
+sethandler <c-h> a:vim
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+sethandler <c-l> a:vim
+sethandler <c-n> a:vim
+sethandler <c-m> a:vim
+sethandler <c-/> a:vim
+sethandler <s-tab> a:vim
+sethandler <c-tab> a:vim
+sethandler <c-s-tab> a:vim
+
+" idea handler
+
+"-----------------------------------------------------------------------------------------------------------------------
+
+" =====================================
+" ========== Custom Mappings ==========
+" =====================================
+
+" format code
+nmap Q mzGo<ESC>:%s/^\s*\n//g<CR>:nohlsearch<CR>'z<action>(ReformatCode)
+
+" quickly print variables
+nnoremap <Leader>pp yiwoSystem.out.println("<C-r>+: " + <C-r>+);<Left><Left><ESC>
+
+" quickly add comment at the end of line
+nnoremap <Leader>pc :s/\s*$//g<CR>:nohlsearch<CR>A<space><space>//<space>
+
+"-----------------------------------------------------------------------------------------------------------------------
+
+" ================================================================================
+" 通用按键映射说明：
+"                Normal    Visual    Operator Pending    Insert Only    Command Line
+"                常规模式    可视化模式     运算符模式          插入模式         命令行模式
+"                              v          d,y,c              i,a            /,:
+"map  noremap       X          X            X
+"nmap nnoremap      X
+"vmap vnoremap                 X
+"omap onoremap                              X
+"imap inoremap                                               X
+"cmap cnoremap                                                               X
